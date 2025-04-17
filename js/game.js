@@ -1,10 +1,17 @@
+/*global Phaser*/
+
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Trisha ray
 // Created on: April 2025
 // This file contains the JS functions for index.html
-/*global Phaser*/
 
+import SplashScene from './splashScene.js'
+
+//Our game scene
+const splashScene = new SplashScene()
+
+//*Game scene*/
 const config = {
   type: Phaser.AUTO,
   width: 1920,
@@ -17,4 +24,10 @@ const config = {
 }
 
 const game= new Phaser.Game(config)
-console.log(game)
+
+  //load scenes
+  //NOTE: remember any "key" is global and CAN NOT be reused!
+  game.scene.add('splashScene', splashScene)
+
+  //start title
+  game.scene.start('splashScene')
