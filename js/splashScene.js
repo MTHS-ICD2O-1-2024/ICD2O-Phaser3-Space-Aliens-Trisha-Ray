@@ -23,6 +23,7 @@ init (data) {
   }
 
   update (time, delta) {
+    this.scene.switch('titleScene')
   }
 }
 
