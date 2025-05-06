@@ -22,6 +22,12 @@ const config = {
   type: Phaser.AUTO,
   width: 1920,
   height: 1080,
+  physics: {
+    default: "arcade",
+    arcade: {
+      debug: true 
+    }
+  },
   backgroundColor: 0xffffff,
   scale: {
     mode: Phaser.Scale.FIT,
