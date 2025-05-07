@@ -37,6 +37,7 @@ class GameScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    //called 60 times a second, hopefully!
   }
 }
 
