@@ -8,7 +8,7 @@
 
 class GameScene extends Phaser.Scene {
   //create an alien
-  creatAlien () {
+  createAlien () {
     const alienXLocation = Math.floor(Math.random() * 1920) + 1 // this will get a number between 1 and 1920
     let alienXVelocity = Math.floor(Math.random() * 50) + 1 //this will get a number between 1 and 50;
     alienXVelocity *= Math.round(Math.random()) ? 1 : -1 //this will add minus sign in 50% of cases
@@ -43,6 +43,7 @@ class GameScene extends Phaser.Scene {
 
     //sound 
     this.load.audio('laser', 'assets/laser1.wav')
+    this.load.audio('explosion', 'assets/barrelExploding.wav')
   }
 
   create(data) {
@@ -56,7 +57,16 @@ class GameScene extends Phaser.Scene {
 
     //create the group for the aliens
     this.alienGroup = this.add.group()
-    this.creatAlien()
+    this.createAlien()
+
+    // Collisions between missiles and aliens 
+    this.physics.add.collider(this.missileGroup, this.alienGroup, function (missileCollide, alienCollide) {
+      alienCollide.destroy()
+      missileCollide.destroy()
+      this.sound.play('explosion')
+      this.createAlien()
+      this.createAlien()
+    }.bind(this))
   }
 
   update(time, delta) {
